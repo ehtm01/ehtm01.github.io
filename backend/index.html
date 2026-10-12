@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이도현 | 백엔드 개발자 포트폴리오</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet">
+    <style>
+  :root{
+    --accent:#2563eb; --accent-soft:#eff4ff; --accent-deep:#1d4ed8;
+    --ink:#0f172a; --ink-2:#334155; --ink-3:#64748b;
+    --line:#e2e8f0; --bg:#ffffff; --bg-soft:#f8fafc; --bg-soft-2:#f1f5f9;
+    --gold:#f59e0b; --gold-bg:#fffbeb;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  body{font-family:'Pretendard',-apple-system,BlinkMacSystemFont,'Segoe UI','Apple SD Gothic Neo',sans-serif;
+    color:var(--ink);background:var(--bg-soft-2);font-size:9.6pt;line-height:1.52;
+    -webkit-font-smoothing:antialiased;word-break:keep-all;line-break:strict;}
+  code,.mono{font-family:'JetBrains Mono',monospace;word-break:break-all;}
+
+  @page{ size:A4 landscape; margin:0; }
+  .page{width:297mm;height:210mm;background:var(--bg);margin:0 auto;padding:12mm 14mm;position:relative;overflow:hidden;display:flex;flex-direction:column;}
+  @media screen{ .page{margin:9mm auto;box-shadow:0 10px 40px rgba(15,23,42,.13);} }
+  @media print{ body{background:#fff;} .page{margin:0;box-shadow:none;page-break-after:always;} .page:last-child{page-break-after:auto;} }
+
+  .section-title{font-size:15pt;font-weight:800;letter-spacing:-.02em;display:flex;align-items:center;gap:9px;}
+  .section-title::before{content:"";width:5px;height:20px;border-radius:3px;background:var(--accent);}
+  .section-sub{color:var(--ink-3);font-size:8.8pt;margin:2px 0 0 14px;}
+  .chip{display:inline-block;padding:3px 9px;border-radius:999px;background:var(--bg-soft);border:1px solid var(--line);
+    font-size:8.2pt;font-weight:500;color:var(--ink-2);margin:0 3px 5px 0;white-space:nowrap;}
+  .chip.soft{background:var(--accent-soft);border-color:#dbe6ff;color:var(--accent-deep);font-weight:600;}
+
+  /* ===== COVER ===== */
+  .cover{flex-direction:row;gap:0;padding:0;}
+  .cover-left{width:104mm;flex:none;background:linear-gradient(165deg,#0f172a,#1e293b);color:#fff;padding:17mm 13mm;display:flex;flex-direction:column;}
+  .cover-left .avatar{width:200px;height:200px;border-radius:22px;object-fit:cover;border:4px solid rgba(255,255,255,.15);box-shadow:0 10px 30px rgba(0,0,0,.35);}
+  .cover-left .nm{font-size:29pt;font-weight:800;letter-spacing:-.03em;margin-top:18px;line-height:1.05;}
+  .cover-left .nm .en{display:block;font-size:12pt;font-weight:400;color:#94a3b8;letter-spacing:.04em;margin-top:6px;}
+  .cover-left .role{display:inline-block;margin-top:13px;font-size:11pt;font-weight:700;color:#bfdbfe;background:rgba(59,130,246,.18);border:1px solid rgba(59,130,246,.35);padding:5px 13px;border-radius:8px;width:fit-content;}
+  .cover-contact{margin-top:auto;display:flex;flex-direction:column;gap:10px;padding-top:22px;}
+  .cover-contact .ci{display:flex;align-items:center;gap:11px;font-size:9pt;color:#cbd5e1;}
+  .cover-contact .ci svg{width:16px;height:16px;fill:#60a5fa;flex:none;}
+  .cover-contact .ci b{color:#fff;font-weight:600;min-width:42px;display:inline-block;}
+
+  .cover-right{flex:1;padding:17mm 13mm;display:flex;flex-direction:column;}
+  .cover-tagline{font-size:12pt;color:var(--ink-2);font-weight:500;line-height:1.62;}
+  .cover-tagline b{color:var(--ink);font-weight:700;} .cover-tagline .hl{color:var(--accent-deep);font-weight:700;}
+  .cover-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:20px;}
+  .stat{background:var(--bg-soft);border:1px solid var(--line);border-radius:13px;padding:14px 6px;text-align:center;}
+  .stat .num{font-size:20pt;font-weight:800;color:var(--accent);line-height:1;}
+  .stat .lab{font-size:7.8pt;color:var(--ink-3);margin-top:6px;font-weight:500;line-height:1.35;}
+  .cover-projects{margin-top:20px;}
+  .cover-projects .ph{font-size:8.6pt;font-weight:700;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px;}
+  .cpx{display:flex;align-items:center;gap:11px;padding:8px 0;border-bottom:1px solid var(--line);}
+  .cpx:last-child{border-bottom:none;}
+  .cpx .dot{width:9px;height:9px;border-radius:50%;flex:none;}
+  .cpx.c1 .dot{background:#0891b2;} .cpx.c2 .dot{background:#2563eb;} .cpx.c3 .dot{background:#7c3aed;}
+  .cpx .nm{font-weight:700;font-size:10pt;min-width:84px;}
+  .cpx .ds{color:var(--ink-2);font-size:8.8pt;flex:1;}
+  .cpx .rl{font-size:8pt;font-weight:700;color:var(--accent-deep);background:var(--accent-soft);padding:3px 9px;border-radius:6px;white-space:nowrap;}
+  .cover-awards{margin-top:16px;background:var(--gold-bg);border:1px solid #fde68a;border-radius:11px;padding:11px 14px;}
+  .cover-awards .h{font-size:8.8pt;font-weight:800;color:#b45309;display:flex;align-items:center;gap:7px;margin-bottom:5px;}
+  .cover-awards .b{font-size:8.6pt;color:#92400e;line-height:1.55;}
+  .cover-awards .b b{color:#7c2d12;font-weight:700;}
+  .cov-card{border:1px solid var(--line);border-radius:11px;padding:9px 13px;margin-bottom:8px;border-left:4px solid #cbd5e1;background:#fff;}
+  .cov-card:last-child{margin-bottom:0;}
+  .cov-card.c1{border-left-color:#0891b2;} .cov-card.c2{border-left-color:#2563eb;} .cov-card.c3{border-left-color:#7c3aed;}
+  .cov-card .cc-top{display:flex;align-items:center;gap:8px;}
+  .cov-card .cc-top .nm{font-weight:800;font-size:10.5pt;letter-spacing:-.01em;}
+  .cov-card .cc-top .rl{font-size:7.6pt;font-weight:700;color:var(--accent-deep);background:var(--accent-soft);padding:2px 8px;border-radius:6px;}
+  .cov-card .cc-top .aw{margin-left:auto;font-size:8.2pt;font-weight:800;color:#b45309;white-space:nowrap;}
+  .cov-card .cc-ds{font-size:8.3pt;color:var(--ink-2);margin-top:5px;line-height:1.5;}
+  .cov-card .cc-rs{font-size:8.1pt;color:var(--ink-2);margin-top:4px;line-height:1.5;padding-left:13px;position:relative;display:flex;align-items:flex-start;gap:8px;}
+  .cov-card .cc-rs::before{content:"▸";position:absolute;left:0;color:var(--accent);font-weight:700;}
+  .cov-card .cc-rs b{color:var(--accent-deep);font-weight:700;}
+  .cover-foot{margin-top:auto;padding-top:13px;border-top:2px solid var(--ink);font-size:8.4pt;color:var(--ink-3);}
+
+  /* ===== About 2단 ===== */
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .cols.wide-left{grid-template-columns:1.05fr .95fr;}
+  .col{display:flex;flex-direction:column;gap:11px;}
+  .about-lead{background:linear-gradient(135deg,#f8fafc,#eff4ff);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:11px;padding:14px 16px;font-size:9.6pt;color:var(--ink-2);line-height:1.66;}
+  .about-lead b{color:var(--ink);}
+  .strength-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  .strength{background:#fff;border:1px solid var(--line);border-radius:11px;padding:12px 13px;}
+  .strength .t{font-weight:700;font-size:9.5pt;display:flex;align-items:center;gap:7px;margin-bottom:5px;}
+  .strength .t .ic{width:22px;height:22px;border-radius:7px;background:var(--accent-soft);color:var(--accent-deep);display:flex;align-items:center;justify-content:center;font-size:11pt;flex:none;}
+  .strength .d{font-size:8.6pt;color:var(--ink-3);line-height:1.52;}
+  .skill-block{margin-bottom:10px;}
+  .skill-block .h{font-size:8.6pt;font-weight:700;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px;display:flex;align-items:center;gap:8px;}
+  .skill-block .h .bar{width:16px;height:3px;border-radius:2px;background:var(--accent);}
+  .award-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+  .award-card{border:1px solid #fde68a;background:var(--gold-bg);border-radius:11px;padding:11px 13px;display:flex;gap:11px;align-items:center;}
+  .award-card .md{font-size:20pt;flex:none;}
+  .award-card .tt{font-weight:800;font-size:9pt;color:#7c2d12;line-height:1.25;}
+  .award-card .ss{font-size:7.8pt;color:#b45309;margin-top:2px;}
+
+  /* ===== PROJECT (Layout B) ===== */
+  .proj-head{border-radius:12px;padding:13px 18px;color:#fff;margin-bottom:11px;flex:none;}
+  .proj-head.glu{background:linear-gradient(120deg,#0e7490,#0891b2);}
+  .proj-head.ggul{background:linear-gradient(120deg,#1d4ed8,#3b82f6);}
+  .proj-head.hearo{background:linear-gradient(120deg,#6d28d9,#7c3aed);}
+  .proj-head.ops{background:linear-gradient(120deg,#0f172a,#334155);}
+  .proj-head .top{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;}
+  .proj-head .pj-no{font-size:8.2pt;font-weight:700;opacity:.85;letter-spacing:.07em;}
+  .proj-head .pj-name{font-size:20pt;font-weight:800;letter-spacing:-.02em;line-height:1.08;margin-top:1px;}
+  .proj-head .pj-name .sub{font-size:11pt;font-weight:500;opacity:.9;margin-left:7px;}
+  .proj-head .pj-meta{display:flex;flex-direction:column;gap:4px;align-items:flex-end;flex:none;}
+  .proj-head .pj-meta .m{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.26);padding:3px 10px;border-radius:6px;font-size:7.8pt;font-weight:500;white-space:nowrap;}
+  .proj-head .pj-meta .m.award{background:#fde047;border-color:#facc15;color:#713f12;font-weight:800;}
+  .proj-head .pj-meta .m b{font-weight:700;}
+  .proj-head .pj-desc{font-size:9pt;opacity:.96;margin-top:7px;line-height:1.5;}
+
+  .pbody{display:grid;grid-template-columns:1.5fr .92fr;gap:15px;flex:1;min-height:0;}
+  .ptext{display:flex;flex-direction:column;gap:10px;min-width:0;}
+  .pimg{display:flex;flex-direction:column;gap:8px;justify-content:center;align-items:center;min-width:0;}
+
+  .block-h{font-size:10pt;font-weight:800;color:var(--ink);margin-bottom:6px;display:flex;align-items:center;gap:8px;}
+  .block-h .n{width:19px;height:19px;border-radius:6px;background:var(--ink);color:#fff;font-size:8.2pt;display:flex;align-items:center;justify-content:center;font-weight:700;flex:none;}
+  .role-row{display:flex;gap:10px;align-items:stretch;}
+  .role-stat{background:var(--ink);color:#fff;border-radius:11px;padding:9px 13px;text-align:center;flex:none;min-width:94px;display:flex;flex-direction:column;justify-content:center;}
+  .role-stat .num{font-size:17pt;font-weight:800;line-height:1;color:#fff;}
+  .role-stat .lab{font-size:7.2pt;opacity:.82;margin-top:4px;}
+  .role-desc{flex:1;background:var(--bg-soft);border:1px solid var(--line);border-radius:11px;padding:9px 12px;font-size:8.6pt;color:var(--ink-2);line-height:1.55;display:flex;align-items:center;}
+  .role-desc b{color:var(--ink);}
+  ul.feat{list-style:none;}
+  ul.feat li{position:relative;padding:3.5px 0 3.5px 16px;font-size:8.6pt;color:var(--ink-2);line-height:1.5;border-bottom:1px dashed var(--line);}
+  ul.feat li:last-child{border-bottom:none;}
+  ul.feat li::before{content:"";position:absolute;left:2px;top:8px;width:6px;height:6px;border-radius:2px;background:var(--accent);}
+  ul.feat li b{color:var(--ink);font-weight:700;}
+  .tag{font-family:'JetBrains Mono',monospace;font-size:7.5pt;color:var(--accent-deep);background:var(--accent-soft);padding:1px 5px;border-radius:4px;word-break:break-all;}
+  code{font-family:'JetBrains Mono',monospace;font-size:7.8pt;background:var(--bg-soft-2);padding:1px 4px;border-radius:4px;color:var(--ink-2);}
+
+  .star{border:1px solid var(--line);border-radius:11px;overflow:hidden;background:#fff;break-inside:avoid;}
+  .star-h{background:var(--bg-soft);padding:7px 12px;font-weight:700;font-size:9pt;border-bottom:1px solid var(--line);display:flex;gap:8px;align-items:center;}
+  .star-h .badge{font-size:6.8pt;font-weight:700;color:#fff;background:var(--accent);padding:2px 7px;border-radius:5px;letter-spacing:.04em;}
+  .star-body{padding:8px 12px;}
+  .star-line{display:flex;gap:9px;padding:1.5px 0;font-size:8.4pt;line-height:1.46;}
+  .star-line .lk{flex:none;width:40px;font-weight:700;font-size:7.2pt;color:#fff;border-radius:4px;text-align:center;padding:2px 0;height:fit-content;margin-top:1px;}
+  .lk.s{background:#64748b;} .lk.a{background:#2563eb;} .lk.r{background:#0d9488;}
+  .star-line .lv{color:var(--ink-2);flex:1;} .star-line .lv b{color:var(--ink);}
+  .result-box{background:#ecfdf5;border:1px solid #a7f3d0;border-radius:10px;padding:9px 12px;font-size:8.5pt;color:#065f46;line-height:1.55;}
+  .result-box b{color:#064e3b;} .result-box .h{font-weight:700;color:#047857;margin-bottom:3px;}
+
+  /* 이미지 카드 */
+  .shot{border:1px solid var(--line);border-radius:9px;overflow:hidden;background:#fff;box-shadow:0 2px 10px rgba(15,23,42,.08);}
+  .shot .cap{font-size:7.2pt;color:var(--ink-3);padding:4px 8px;text-align:center;border-top:1px solid var(--line);background:var(--bg-soft);font-weight:500;}
+  .pimg.web .shot{width:auto;}
+  .pimg.web .shot img{height:55mm;width:auto;display:block;}
+  .phones{display:flex;gap:8px;justify-content:center;align-items:center;}
+  .phones .hero img{height:118mm;width:auto;display:block;}
+  .phones .stk{display:flex;flex-direction:column;gap:8px;}
+  .phones .stk .shot img{height:55mm;width:auto;display:block;}
+
+  /* 자동화 규칙 */
+  .rule-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+  .rule{background:#fff;border:1px solid var(--line);border-radius:10px;padding:9px 11px;}
+  .rule .rt{font-weight:700;font-size:8.7pt;color:var(--ink);display:flex;align-items:center;gap:6px;margin-bottom:2px;}
+  .rule .rd{font-size:7.9pt;color:var(--ink-3);line-height:1.46;}
+
+  .footer-tiny{position:absolute;bottom:6mm;right:14mm;font-size:7pt;color:var(--ink-3);}
+  .footer-tiny .nm{font-weight:600;color:var(--ink-2);}
+  /* ===== Certifications ===== */
+  .cert-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+  .cert{border:1px solid var(--line);border-radius:11px;padding:11px 13px;background:#fff;border-top:3px solid var(--accent);}
+  .cert .ct{font-weight:800;font-size:9pt;color:var(--ink);}
+  .cert .cs{font-size:7.7pt;color:var(--ink-3);margin-top:3px;line-height:1.4;}
+  /* ===== Education ===== */
+  .edu-card{border:1px solid var(--line);border-radius:11px;padding:13px 16px;background:linear-gradient(135deg,#f8fafc,#eff4ff);}
+  .edu-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:9px;flex-wrap:wrap;gap:4px;}
+  .edu-name{font-size:10pt;font-weight:700;color:var(--ink);}
+  .edu-name b{color:var(--accent-deep);}
+  .edu-per{font-size:8.4pt;color:var(--ink-3);font-weight:500;}
+  .edu-cols{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .edu-phase{background:#fff;border:1px solid var(--line);border-radius:9px;padding:9px 12px;}
+  .edu-phase .ep-h{font-size:8.8pt;font-weight:700;color:var(--ink);margin-bottom:3px;display:flex;align-items:center;gap:6px;}
+  .edu-phase .ep-h .num{font-size:7.2pt;background:var(--accent);color:#fff;border-radius:5px;padding:1px 6px;font-weight:700;}
+  .edu-phase .ep-d{font-size:8.2pt;color:var(--ink-3);line-height:1.5;}
+  /* ===== Tech Stack 상세 ===== */
+  .sk-legend{font-size:8pt;color:var(--ink-3);font-weight:500;}
+  .sk-legend b{color:var(--gold);font-weight:400;}
+  .sk-grid{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:14px 16px;flex:1;min-height:0;}
+  .sk-cat{border:1px solid var(--line);border-radius:10px;padding:13px 18px 10px;display:flex;flex-direction:column;min-height:0;}
+  .sk-cat .ch{font-size:9.5pt;font-weight:800;display:flex;align-items:center;gap:8px;margin-bottom:9px;text-transform:uppercase;letter-spacing:.03em;}
+  .sk-cat .ch .bar{width:16px;height:3px;border-radius:2px;background:var(--accent);}
+  .sk-rows{display:flex;flex-direction:column;justify-content:center;gap:13px;flex:1;min-height:0;}
+  .sk-row{display:grid;grid-template-columns:96px 66px 1fr;gap:9px;align-items:start;padding-bottom:13px;border-bottom:1px dashed var(--line);font-size:8.6pt;line-height:1.45;}
+  .sk-row:last-child{border-bottom:none;}
+  .sk-row .sn{font-weight:700;color:var(--ink);}
+  .sk-row .st{color:#cbd5e1;font-size:9pt;letter-spacing:.5px;white-space:nowrap;}
+  .sk-row .st b{color:var(--gold);font-weight:400;}
+  .sk-row .se{color:var(--ink-2);}
+  .sk-row .se b{color:var(--ink);font-weight:700;}
+</style>
+  </head>
+  <body>
+
+    <!-- ============================ COVER ============================ -->
+    <section class="page cover">
+      <div class="cover-left">
+        <img class="avatar" src="../assets/profile_avatar.jpg" alt="이도현 프로필">
+        <div class="nm">이도현<span class="en">Dohyun Lee</span></div>
+        <div class="role">Backend Developer</div>
+        <div class="cover-contact">
+          <div class="ci"><svg viewBox="0 0 24 24"><path
+                d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" /></svg><b>Email</b>
+            ehtm01@gmail.com</div>
+          <div class="ci"><svg viewBox="0 0 24 24"><path
+                d="M12 2C6.5 2 2 6.5 2 12c0 4.4 2.9 8.2 6.8 9.5.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.3 1.1 2.9.8.1-.6.3-1.1.6-1.3-2.2-.2-4.5-1.1-4.5-4.9 0-1.1.4-2 1-2.7-.1-.2-.4-1.2.1-2.5 0 0 .8-.3 2.7 1a9.4 9.4 0 015 0c1.9-1.3 2.7-1 2.7-1 .5 1.3.2 2.3.1 2.5.6.7 1 1.6 1 2.7 0 3.8-2.3 4.7-4.5 4.9.3.3.7 1 .7 1.9v2.8c0 .3.2.6.7.5C19.1 20.2 22 16.4 22 12 22 6.5 17.5 2 12 2z" /></svg><b>GitHub</b>
+            github.com/ehtm01</div>
+          <div class="ci"><svg viewBox="0 0 24 24"><path
+                d="M12 3L1 9l11 6 9-4.9V17h2V9L12 3zM5 13.2V17l7 4 7-4v-3.8l-7 3.8-7-3.8z" /></svg><b>학력</b>
+            국립부경대학교 디스플레이반도체공학</div>
+          <div class="ci"><svg viewBox="0 0 24 24"><path
+                d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7zm0 9.5A2.5 2.5 0 1112 6a2.5 2.5 0 010 5.5z" /></svg><b>교육</b>
+            삼성 청년 SW·AI 아카데미 14기</div>
+        </div>
+      </div>
+
+      <div class="cover-right">
+        <div class="cover-tagline">
+          <b>안정적인 아키텍처와 AI 연동을 설계하는 백엔드 개발자</b>입니다.<br>
+          GluCoach 백엔드 Lead로 전 도메인 API·인증 보안·AI 연동·프로젝트 아키텍처를 담당했고,<br>
+          프론트엔드까지 깊이 다뤄 <span class="hl">경계에서 생기는 문제를 양쪽 관점</span>에서 해결합니다.
+        </div>
+
+        <div class="cover-stats">
+          <div class="stat"><div class="num">3 times</div><div class="lab"><br>팀
+              프로젝트<br>개발 파트 Lead 담당</div></div>
+          <div class="stat"><div class="num">20+ lines</div><div
+              class="lab"><br>Jira 자동화<br>규칙 구축</div></div>
+          <div class="stat"><div class="num">Languages</div><div
+              class="lab"><br>Python·JS<br>TS·Java</div></div>
+        </div>
+
+        <div class="cover-projects">
+          <div class="ph">Projects</div>
+          <br>
+          <div class="cov-card c1">
+            <div class="cc-top"><span class="nm">GluCoach</span><span
+                class="rl">Backend Lead</span><span class="aw">🏆 우수상</span></div>
+            <div class="cc-ds">CGM·AI 기반 개인 맞춤 혈당 관리 Android 앱 - <b>AI 음식 인식·혈당
+                예측·Agent 코칭</b></div>
+            <div class="cc-rs"><b>기여</b>
+              <div>모든 도메인 API 설계·구현, 프로젝트 아키텍처 구축<br>AI 호출과 DB 트랜잭션을 분리해 안정적 서버
+                아키텍처
+                완성</div>
+            </div>
+          </div>
+          <div class="cov-card c2">
+            <div class="cc-top"><span class="nm">GGulJob</span><span
+                class="rl">Frontend Lead</span><span class="aw">🏆 우수상</span></div>
+            <div class="cc-ds">AI 기반 개발자 취업 로드맵 웹 플랫폼 - <b>빅데이터·벡터 임베딩
+                추천</b></div>
+            <div class="cc-rs"><b>기여</b>
+              <div>거의 모든 페이지 구현<br>useMemo 최적화로 목록 인터랙션 반응성 개선</div>
+            </div>
+          </div>
+          <div class="cov-card c3">
+            <div class="cc-top"><span class="nm">HearO</span><span
+                class="rl">Frontend Lead</span><span class="aw">🏆 우수상</span></div>
+            <div class="cc-ds">WebRTC 실시간 AI 통화·상담원 보호 플랫폼 - <b>음성 마스킹·실시간 상담
+                가이드</b></div>
+            <div class="cc-rs"><b>기여</b>
+              <div>LiveKit 통화 코어를 Composable로 모듈화<br>역할별 오디오 분기·자동 재연결 구현</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cover-foot">Backend Developer Portfolio</div>
+      </div>
+    </section>
+
+    <!-- ============================ ABOUT ME ============================ -->
+    <section class="page">
+      <div style="flex:1;display:flex;flex-direction:column;gap:15px;">
+        <div class="section-title">About Me</div>
+        <div class="about-lead" style="font-size:10.4pt;">
+          저는 <b>"화면에서 데이터까지 하나의 흐름으로 본다"</b>는 관점으로 개발합니다.<br>
+          GluCoach에서는 <b>백엔드 Lead</b>로 AI 서버 연동·인증 보안·데이터 품질 파이프라인을 설계하고
+          Docker·DB 환경을 구성했고,<br>
+          GGulJob·HearO에서는 <b>프론트엔드 Lead</b>로 복잡한 실시간 UI와 성능 최적화를 책임졌습니다.<br>
+          프론트와 백엔드를 모두 깊이 다뤘기에 <b>경계에서 생기는 문제를 양쪽 관점에서 해결</b>하는 것이 강점이며,
+          <br>세 프로젝트 내내 <b>Jira·Git 관리를 도맡아 자동화</b>하고 AI를 개발에 적극 활용하며 팀 생산성까지
+          책임졌습니다.
+        </div>
+        <div class="strength-grid"
+          style="grid-template-columns:repeat(2,1fr);gap:13px;">
+          <div class="strength" style="padding:14px 16px;"><div class="t"
+              style="font-size:10pt;"><span class="ic">⚙</span> 백엔드 · 시스템
+              설계</div><div class="d" style="font-size:9pt;">Spring Boot REST
+              API, JWT·SHA-256 이중 보안, AI 외부 호출과<br>DB 트랜잭션 분리(@Async)까지 안정적인 서버
+              아키텍처를 설계합니다.</div></div>
+          <div class="strength" style="padding:14px 16px;"><div class="t"
+              style="font-size:10pt;"><span class="ic">🎨</span> 프론트엔드 ·
+              UX</div><div class="d" style="font-size:9pt;">React·Vue 3 양쪽 경험.
+              useMemo 성능 최적화, Composable 패턴 설계,<br>재현 어려운 렌더링 타이밍 버그를 원인부터
+              해결합니다.</div></div>
+          <div class="strength" style="padding:14px 16px;"><div class="t"
+              style="font-size:10pt;"><span class="ic">🤖</span> AI 서비스 연동 ·
+              활용</div><div class="d" style="font-size:9pt;">LLM(Claude·OpenAI)
+              Tool-calling, 임베딩 음식 인식,<br>LSTM 예측을 end-to-end 연동하고, Claude
+              Code·MCP로 개발 생산성을 높입니다.</div></div>
+          <div class="strength" style="padding:14px 16px;"><div class="t"
+              style="font-size:10pt;"><span class="ic">🔁</span> 협업 · 프로세스
+              자동화</div><div class="d" style="font-size:9pt;">3개 프로젝트 Jira·Git
+              관리를 도맡아 자동화 규칙 20여 개 구축<br>스프린트·이슈·알림 흐름을 시스템화한 경험을
+              갖췄습니다.</div></div>
+        </div>
+        <div>
+          <div class="section-title"
+            style="font-size:12.5pt;">Certifications</div>
+          <div class="cert-strip" style="margin-top:10px;">
+            <div class="cert"><div class="ct">프로그래밍기능사</div><div
+                class="cs">국가기술자격</div></div>
+            <div class="cert"><div class="ct">SQLD</div><div class="cs">SQL 개발자
+                · 한국데이터산업진흥원</div></div>
+            <div class="cert"><div class="ct">컴퓨터활용능력 1급</div><div
+                class="cs">대한상공회의소</div></div>
+            <div class="cert"><div class="ct">TOEIC Speaking</div><div
+                class="cs">IH · 140점</div></div>
+          </div>
+        </div>
+        <div>
+          <div class="section-title" style="font-size:12.5pt;">Education</div>
+          <div class="edu-card" style="margin-top:10px;">
+            <div class="edu-top">
+              <div class="edu-name">삼성 청년 SW·AI 아카데미 <b>SSAFY 14기</b></div>
+              <div class="edu-per">2025.07 ~ 2026.06 · 1년 집중 과정 · 삼성전자 주관</div>
+            </div>
+            <div class="edu-cols">
+              <div class="edu-phase"><div class="ep-h"><span
+                    class="num">1학기</span> SW 기초 역량</div><div
+                  class="ep-d">알고리즘·자료구조·DB·CS·웹 풀스택 기초와 코딩테스트로 개발 기본기를
+                  다졌습니다.</div></div>
+              <div class="edu-phase"><div class="ep-h"><span
+                    class="num">2학기</span> 실전 팀 프로젝트</div><div class="ep-d">팀
+                  프로젝트 3개(HearO·GGulJob·GluCoach)를 수행하며 모든 경진대회에서
+                  수상했습니다.</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-tiny"><span class="nm">이도현</span> · Backend Developer
+        Portfolio</div>
+    </section>
+
+    <!-- ============================ TECH STACK ============================ -->
+    <section class="page">
+      <div
+        style="flex:1;display:flex;flex-direction:column;gap:11px;min-height:0;">
+        <div
+          style="display:flex;justify-content:space-between;align-items:flex-end;">
+          <div class="section-title">Tech Stack</div>
+        </div>
+        <div class="sk-grid">
+          <div class="sk-cat"><div class="ch"><span
+                class="bar"></span>Language</div>
+            <div class="sk-rows">
+              <div class="sk-row"><span class="sn">Python</span><span
+                  class="st"><b>★★★★</b>☆</span><span class="se"><b>주력
+                    언어</b><br>FinPal Django 백엔드·FastAPI AI 서버 연동<br>Pandas 기반
+                  데이터 정제·추천 로직 구현</span></div>
+              <div class="sk-row"><span class="sn">JavaScript</span><span
+                  class="st"><b>★★★</b>☆☆</span><span class="se">FE 비즈니스 로직·비동기
+                  통신(fetch/axios)<br>브라우저 미디어·스토리지 API 처리</span></div>
+              <div class="sk-row"><span class="sn">TypeScript</span><span
+                  class="st"><b>★★★</b>☆☆</span><span class="se">React 컴포넌트
+                  props·상태 타입,<br>API 응답 인터페이스 설계로 런타임 오류 사전 차단</span></div>
+              <div class="sk-row"><span class="sn">Java</span><span
+                  class="st"><b>★★★</b>☆☆</span><span class="se">GluCoach 백엔드
+                  도메인 구현<br>Spring Boot 기반 REST API·비즈니스 로직 작성</span></div>
+            </div>
+          </div>
+          <div class="sk-cat"><div class="ch"><span
+                class="bar"></span>Frontend</div>
+            <div class="sk-rows">
+              <div class="sk-row"><span class="sn">React</span><span
+                  class="st"><b>★★★</b>☆☆</span><span class="se"><b>GGulJob</b>
+                  전 페이지 구현<br>react-markdown·remark-gfm 마크다운 렌더링<br>검색·필터 UI
+                  구성</span></div>
+              <div class="sk-row"><span class="sn">Vue</span><span
+                  class="st"><b>★★★</b>☆☆</span><span class="se"><b>HearO</b> 통화
+                  화면 구현<br>Composition API·Composable로 통화 상태 로직 모듈화</span></div>
+              <div class="sk-row"><span class="sn">상태관리</span><span
+                  class="st"><b>★★★</b>☆☆</span><span
+                  class="se">Zustand(React)·Pinia(Vue) 전역 상태 설계<br>인증 토큰·사용자 세션
+                  관리</span></div>
+              <div class="sk-row"><span class="sn">실시간</span><span
+                  class="st"><b>★★★</b>☆☆</span><span class="se">STOMP/WebSocket
+                  메시징·WebRTC 통화 연결, 끊김 시 자동 재연결 처리</span></div>
+            </div>
+          </div>
+          <div class="sk-cat"><div class="ch"><span
+                class="bar"></span>Backend</div>
+            <div class="sk-rows">
+              <div class="sk-row"><span class="sn">Django</span><span
+                  class="st"><b>★★★</b>☆☆</span><span class="se"><b>FinPal</b>
+                  백엔드 전담<br>DRF REST API, SimpleJWT 인증, Custom User 모델,
+                  규칙기반+협업필터링 3단계 추천,<br>금융감독원 OpenAPI 수집 커맨드</span></div>
+              <div class="sk-row"><span class="sn">Spring Boot</span><span
+                  class="st"><b>★★★</b>☆☆</span><span class="se"><b>GluCoach</b>
+                  5개 도메인(auth·food·prediction·user·notification) REST API +
+                  Spring Security 다중 Filter Chain·JWT 인증/인가</span></div>
+              <div class="sk-row"><span class="sn">PostgreSQL</span><span
+                  class="st"><b>★★</b>☆☆☆</span><span class="se">GluCoach 도메인
+                  스키마 설계<br>Flyway 마이그레이션 버전 관리<br>Docker Compose DB 환경
+                  구성</span></div>
+            </div>
+          </div>
+          <div class="sk-cat"><div class="ch"><span class="bar"></span>협업</div>
+            <div class="sk-rows">
+              <div class="sk-row"><span class="sn">Git</span><span
+                  class="st"><b>★★★★</b>☆</span><span class="se">feature 브랜치
+                  전략(GitHub/GitLab Flow)<br>PR·MR 기반 코드리뷰, 커밋·이슈 컨벤션
+                  정립·준수</span></div>
+              <div class="sk-row"><span class="sn">Jira</span><span
+                  class="st"><b>★★★★</b>☆</span><span class="se"><b>자동화 규칙 20여
+                    개</b> 직접 구축<br>이슈 상태 전이·담당자 지정, MCP 가이드 문서 배포<br>Mattermost
+                  Webhook 알림 자동화</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-tiny"><span class="nm">이도현</span> · Tech Stack</div>
+    </section>
+
+    <!-- ============================ PROJECT 1 : GluCoach ============================ -->
+    <section class="page">
+      <div class="proj-head glu">
+        <div class="top">
+          <div><div class="pj-no">PROJECT 01 — Backend Lead</div><div
+              class="pj-name">GluCoach <span class="sub">글루코치</span></div></div>
+          <div class="pj-meta">
+            <span class="m award">🏆 우수상 · 전시발표회 발표 부문 선정</span>
+            <span class="m">삼성 청년 SW·AI 아카데미 <b>2026.04~06</b> · 6인</span>
+            <span class="m">Android + Wear OS</span>
+          </div>
+        </div>
+        <div class="pj-desc">CGM(연속혈당측정기) 데이터와 AI를 결합한 개인 맞춤형 혈당 관리 Android
+          앱<br>
+          AI 에이전트 <b>Kiki</b>가 식후·고저혈당 상황에서 선제 코칭하고, LSTM으로 식후 120분 혈당을 예측하며, 사진
+          한 장으로 식사를 자동 기록합니다.</div>
+      </div>
+
+      <div class="pbody" style="grid-template-columns:4.5fr 5.5fr;">
+        <div class="ptext">
+          <br>
+          <div>
+            <div class="block-h"><span class="n">1</span>담당 역할 &amp; 기여</div>
+            <div class="role-row">
+              <div class="role-stat"><div class="num">BE</div><div
+                  class="lab">Lead<br></div></div>
+              <div class="role-desc"><span><b>백엔드 Lead</b>로 전 도메인(auth · food ·
+                  prediction · user · notification)과 <b>프로젝트 아키텍처·Docker·DB
+                    환경</b>을 담당하고,<br>AI
+                  서버 음식 분류 추론 경로까지 연동해<b><br>BE↔AI 경계를 모두 다룬 경험</b>을
+                  쌓았습니다.</span></div>
+            </div>
+          </div>
+          <br>
+          <div>
+            <div class="block-h"><span class="n">2</span>핵심 구현</div>
+            <ul class="feat">
+              <li><b>AI 음식 인식 파이프라인 (BE+AI)</b><br>Android→BE→AI 멀티파트
+                클라이언트(<span
+                  class="tag">FoodDetectClient</span>)<br>CV
+                라벨→<code>foods</code>
+                매핑(<span class="tag">FoodResolutionService</span>) 구현<br>AI측
+                EfficientNet 임베딩 분류 경로 작성</li>
+              <li><b>혈당 예측 서비스</b><br>LSTM 호출 클라이언트를 트랜잭션 외부로 분리<br>
+                비동기(<code>@Async</code>) 처리와 MDC 전파, A/B 비교 예측 구현</li>
+              <li><b>음식 DB 품질 관리</b><br>19,600개 DB에 <code>display_name</code>
+                도입<br>
+                수기→자동→LLM <b>3단계 정제 파이프라인</b>(Flyway)</li>
+              <li><b>인증·보안</b><br>Spring Security 다중 Filter Chain 3중
+                분리<br>Refresh
+                Token SHA-256 해시 후 Redis 저장, per-IP rate limit</li>
+              <li><b>Docker·DB 환경 (BE)</b><br><code>Docker Compose</code> 서비스 환경
+                구성,
+                <b>Flyway 마이그레이션·스키마 관리</b><br>n8n을 별도 schema로 분리해 Flyway 충돌
+                해결</li>
+            </ul>
+          </div>
+        </div>
+        <div class="ptext">
+          <br>
+          <div>
+            <div class="block-h"><span class="n">3</span>Trouble Shooting</div>
+            <div class="star">
+              <div class="star-h"><span class="badge">STAR</span> AI 외부 호출과 DB
+                트랜잭션 충돌 해결</div>
+              <div class="star-body">
+                <div class="star-line"><span class="lk s">상황</span><span
+                    class="lv">식전 혈당 예측은 FastAPI AI 모델 호출 결과를 DB에 저장하는데<br>AI
+                    호출이
+                    트랜잭션 <b>내부</b>에 있어 수 초의 추론 대기 동안 DB 커넥션을 계속 점유<br>A/B 비교 예측은
+                    음식
+                    2개를 병렬 호출해 점유 가중 → <b>커넥션 풀 고갈 위험</b></span></div>
+                <div class="star-line"><span class="lk a">행동</span><span
+                    class="lv"><code>PredictionService</code>에서
+                    <code>@Transactional</code>을 제거해 AI 호출을 tx 밖에 두고<br>DB
+                    조회·쓰기만
+                    <code>PredictionTxHelper</code>의 짧은 tx로 분리<br>
+                    <code>savePrediction</code>은 detached User 대신
+                    <code>getReferenceById</code> 프록시를<br>새 tx에서 발급해 cascade 변경
+                    시 silent
+                    regression을 차단<br>병렬 호출은 전용 <code>asyncExecutor</code> +
+                    <code>MdcTaskDecorator</code>로 correlationId(MDC)를 워커에
+                    전파</span></div>
+                <div class="star-line"><span class="lk r">결과</span><span
+                    class="lv">커넥션 점유 시간을 AI 추론 시간만큼 단축해 동시 예측에도 고갈 없이 안정 처리<br>
+                    async 워커가 각자 프록시를 가져 동시성 안전 + 단일 correlationId로 <b>로그 추적성
+                      확보</b></span></div>
+              </div>
+            </div>
+            <br>
+            <div class="star">
+              <div class="star-h"><span class="badge">STAR</span> n8n · Flyway
+                스키마 충돌 해결 (DB 환경)</div>
+              <div class="star-body">
+                <div class="star-line"><span class="lk s">상황</span><span
+                    class="lv">워크플로우 도구 <b>n8n</b>이 backend와 <b>같은 Postgres
+                      DB</b>를
+                    공유하며 테이블을 자동 생성<br>그로 인해 <b>Flyway 마이그레이션과 스키마 충돌</b>로 BE
+                    기동
+                    실패</span></div>
+                <div class="star-line"><span class="lk a">행동</span><span
+                    class="lv">n8n 컨테이너에 <code>DB_POSTGRESDB_SCHEMA=n8n</code>을
+                    지정해
+                    <b>별도 schema로 격리</b>하고<br>postgres init의 중복 스키마 스크립트를
+                    제거<br>Flyway는
+                    <code>db/migration</code> 단일 경로로 통일해 baseline을
+                    정리</span></div>
+                <div class="star-line"><span class="lk r">결과</span><span
+                    class="lv">BE(public)·n8n(n8n schema)이 한 DB를 <b>충돌 없이
+                      공유</b>,
+                    마이그레이션 일관성 확보</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-tiny"><span class="nm">이도현</span> · GluCoach · Backend
+        Lead</div>
+    </section>
+
+    <!-- ============================ SYSTEM ARCHITECTURE : GluCoach ============================ -->
+    <section class="page">
+      <div class="proj-head glu">
+        <div class="top">
+          <div><div class="pj-no">PROJECT 01 — System Architecture</div><div
+              class="pj-name">GluCoach <span class="sub">시스템
+                아키텍처</span></div></div>
+          <div class="pj-meta">
+            <span class="m">Blue-Green 무중단 배포</span>
+            <span class="m">Spring Boot + FastAPI</span>
+            <span class="m">Docker · Flyway</span>
+          </div>
+        </div>
+        <div class="pj-desc">소스 푸시부터 무중단 배포·AI 추론·외부 연동까지 이어지는 GluCoach
+          전체 시스템 구성입니다.</div>
+      </div>
+
+      <div class="pimg web"
+        style="flex-direction:row;flex:none;justify-content:center;align-items:center;margin-bottom:7px;">
+        <div class="shot"><img src="../assets/glucoach_architecture.png"
+            style="height:88mm;width:auto;display:block;"><div
+            class="cap">GitLab →
+            Jenkins CI/CD · Nginx Blue-Green 무중단 배포 · Spring Boot + FastAPI ·
+            PostgreSQL/Redis · n8n · AWS S3 · OpenAI/Anthropic ·
+            Firebase</div></div>
+      </div>
+
+      <div class="pbody" style="grid-template-columns:1.25fr 1fr;flex:1;">
+        <div class="ptext" style="justify-content:center;">
+          <div>
+            <div class="block-h"><span class="n">1</span>시스템 구성</div>
+            <ul class="feat">
+              <li><b>CI/CD</b> - GitLab 푸시 시 <code>Jenkins</code>가 Docker 이미지
+                빌드부터 배포까지 자동 수행하는 파이프라인</li>
+              <li><b>무중단 배포</b> - <code>Nginx</code>가
+                Green(Active)/Blue(Standby)
+                두 환경을 두고<br>새 버전을 Standby에 띄워 헬스 체크 통과 후 트래픽을 전환 →
+                <b>다운타임 0</b></li>
+              <li><b>애플리케이션</b> - 도메인 로직은 <b>Spring Boot</b> REST API,
+                AI 추론은 <b>FastAPI</b>로 분리해 독립 확장</li>
+              <li><b>데이터</b> - <b>PostgreSQL</b> 주 DB + <b>Redis</b> 캐시,
+                <b>Flyway</b>로 스키마 마이그레이션 버전 관리</li>
+              <li><b>외부 연동</b> - n8n 자동화 워크플로우 · AWS S3(이미지) ·
+                OpenAI·Anthropic(LLM) · Firebase FCM(푸시)</li>
+            </ul>
+          </div>
+        </div>
+        <div class="ptext" style="justify-content:center;">
+          <div>
+            <div class="block-h"><span class="n">2</span>My Contribution</div>
+            <div class="result-box"
+              style="background:var(--accent-soft);border-color:#dbe6ff;color:var(--ink-2);">
+              <div class="h" style="color:var(--accent-deep);">★ 백엔드 Lead로 담당한
+                영역</div>
+              <b>전 도메인 REST API</b>(auth·food·prediction·user·notification)
+              설계·구현<br><b>Docker Compose</b> 기반 로컬·운영 환경 구성
+              <br><b>Flyway</b> 마이그레이션·스키마 버전 관리 &nbsp;·&nbsp;
+              AI(FastAPI) 서버·n8n·FCM <b>연동 지점 설계</b><br>
+              <span style="font-size:7.8pt;color:var(--ink-3);">※ Jenkins·Nginx
+                기반 무중단 배포 인프라는 인프라 담당 팀원이 구축<br>※ 연동 관점에서 전체 구조를 이해하고 협업</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-tiny"><span class="nm">이도현</span> · GluCoach · System
+        Architecture</div>
+    </section>
+
+    <!-- ============================ AI AGENT ARCHITECTURE : GluCoach ============================ -->
+    <section class="page">
+      <div class="proj-head glu">
+        <div class="top">
+          <div><div class="pj-no">PROJECT 01 — AI Agent Architecture</div><div
+              class="pj-name">GluCoach <span class="sub">AI 에이전트
+                아키텍처</span></div>
+          </div>
+          <div class="pj-meta">
+            <span class="m">Claude tool-calling</span>
+            <span class="m">데이터·분석·액션 도구</span>
+            <span class="m">FCM 알림</span>
+          </div>
+        </div>
+        <div class="pj-desc">사용자 건강 데이터를 트리거로 Claude가 도구를 반복 호출해 스스로
+          판단·행동하는 <b>에이전트(tool-calling) 구조</b>입니다.</div>
+      </div>
+
+      <div class="pimg web"
+        style="flex-direction:row;flex:none;justify-content:center;align-items:center;margin-bottom:7px;">
+        <div class="shot"><img src="../assets/glucoach_agent_architecture.png"
+            style="height:92mm;width:auto;display:block;"><div class="cap">에이전트
+            루프
+            (Claude sonnet-4-6/haiku 추론 + 도구 실행기) ↔ 도구 팔레트(데이터·분석·액션) →
+            Firebase FCM 알림 전송</div></div>
+      </div>
+
+      <div class="pbody" style="grid-template-columns:1fr 1fr;flex:1;">
+        <div class="ptext" style="justify-content:flex-start;gap:9px;">
+          <div>
+            <div class="block-h"><span class="n">1</span>에이전트 루프</div>
+            <ul class="feat">
+              <li>삼성 헬스·CGM 등 <b>사용자 행동 데이터가 트리거</b> →
+                Claude(sonnet-4-6/haiku) 추론 시작</li>
+              <li><b>데이터·분석 도구를 최대 10회 반복 호출</b>하며 맥락을 수집하고<br>3~5회
+                추론 후 <b>액션 도구</b>로 능동 알림 또는 요청 응답을 전송</li>
+            </ul>
+          </div>
+          <div>
+            <div class="result-box"
+              style="background:var(--accent-soft);border-color:#dbe6ff;color:var(--ink-2);">
+              <div class="h" style="color:var(--accent-deep);">★ My Contribution
+                (BE)</div>
+              에이전트가 호출하는 <b>도구 API</b>(혈당·식사·활동 조회, 음식 혈당 예측 등)와
+              <b>FCM 알림 전송 연동</b>을 구현<br>
+              <span style="font-size:7.8pt;color:var(--ink-3);">※ 에이전트 루프·LLM
+                오케스트레이션 자체는 AI 파트원이 구현 — BE는 도구 API·데이터·알림 연동을 담당</span>
+            </div>
+          </div>
+        </div>
+        <div class="ptext" style="justify-content:flex-start;">
+          <div>
+            <div class="block-h"><span class="n">2</span>도구 팔레트 (3종)</div>
+            <ul class="feat">
+              <li><b>데이터
+                  도구</b><br><code>get_glucose</code>·<code>get_meals</code>·<code>get_steps</code>·<code>get_sleep</code>
+                등 건강 데이터 조회</li>
+              <li><b>분석
+                  도구</b><br><code>get_user_food_grades</code>·<code>predict_glucose_for_food</code>·<code>search_food_by_name</code><br>등
+                개인화 분석</li>
+              <li><b>액션
+                  도구</b><br><code>send_notification</code>·<code>send_command_response</code>·<code>schedule_followup</code>
+                → Firebase FCM 전송</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-tiny"><span class="nm">이도현</span> · GluCoach · AI Agent
+        Architecture</div>
+    </section>
+
+    <!-- ============================ SCREENS : GluCoach ============================ -->
+    <section class="page">
+      <div class="proj-head glu">
+        <div class="top">
+          <div><div class="pj-no">PROJECT 01 — Screens</div><div
+              class="pj-name">GluCoach <span class="sub">주요
+                화면</span></div></div>
+          <div class="pj-meta">
+            <span class="m">혈당 예측·코칭</span>
+            <span class="m">AI 음식 인식</span>
+            <span class="m">Mobile (Android)</span>
+          </div>
+        </div>
+        <div class="pj-desc">실시간 혈당 대시보드, AI 음식 인식 기록, Kiki AI 코칭 등 사용자가
+          직접 마주하는 핵심 화면입니다.</div>
+      </div>
+
+      <div class="pimg web"
+        style="flex-direction:row;flex:1;justify-content:center;align-items:center;gap:24px;">
+        <div class="shot"><img src="../assets/img/glu_1.jpg"
+            style="height:120mm;width:auto;display:block;" alt><div
+            class="cap">실시간
+            혈당 대시보드</div></div>
+        <div class="shot"><img src="../assets/img/glu_2.jpg"
+            style="height:120mm;width:auto;display:block;" alt><div
+            class="cap">AI 음식
+            인식 기록</div></div>
+        <div class="shot"><img src="../assets/img/glu_3.jpg"
+            style="height:120mm;width:auto;display:block;" alt><div
+            class="cap">Kiki AI
+            코칭</div></div>
+      </div>
+      <div class="footer-tiny"><span class="nm">이도현</span> · GluCoach ·
+        Screens</div>
+    </section>
+
+    <!-- ============================ PROJECT 2 : GGulJob ============================ -->
+    <section class="page">
+      <div class="proj-head ggul">
+        <div class="top">
+          <div><div class="pj-no">PROJECT 02 — Frontend Lead</div><div
+              class="pj-name">GGulJob <span class="sub">꿀잡</span></div></div>
+          <div class="pj-meta">
+            <span class="m award">🏆 우수상</span>
+            <span class="m">삼성 청년 SW·AI 아카데미 2026.02~04 · 6인</span>
+            <span class="m">Web · 빅데이터 추천</span>
+          </div>
+        </div>
+        <div class="pj-desc">개발 직군 취업준비생을 위한 <b>AI 기반 올인원 채용 로드맵</b> 웹 플랫폼. 흩어진
+          팀 프로젝트·채용 공고·커리어 조언을 통합하고, 그래프 DB와 벡터 임베딩으로 팀원과 공고를 개인 맞춤 추천합니다.</div>
+      </div>
+      <br>
+      <div class="pbody" style="grid-template-columns:4.5fr 5.5fr;">
+        <div class="ptext">
+          <div>
+            <div class="block-h"><span class="n">1</span>담당 역할 &amp; 기여</div>
+            <div class="role-row">
+              <div class="role-stat"><div class="num">FE</div><div
+                  class="lab">Lead<br></div></div>
+              <div class="role-desc"><span><b>프론트엔드 Lead</b>로 거의 모든 페이지·컴포넌트를 직접
+                  구현하며<br>FE 완성도를 책임졌고, <span
+                    class="tag">ProjectService</span>·<span
+                    class="tag">GithubSyncService</span> 등 <b>백엔드 일부까지</b>
+                  다뤘습니다.</span></div>
+            </div>
+          </div>
+          <div><br>
+            <div class="block-h"><span class="n">2</span>핵심 구현</div>
+            <ul class="feat">
+              <li><b>채용공고 추천 성능 최적화</b><br>공고 맵핑·스택 필터·추가 필터·정렬·페이지네이션을
+                모두 <code>useMemo</code> 체인으로 캐싱해<br>
+                (<code>allJobsMap→jobsFilteredByStack→finalFilteredJobs→정렬→페이지</code>)<br>
+                매 렌더 재계산을 제거</li>
+              <li><b>마크다운 뷰어</b>(AI 포트폴리오·트러블슈팅)<br><code>react-markdown +
+                  remark-gfm</code>으로 GFM 표·코드블록을 커스텀 렌더링하고<br>
+                <code>language-mermaid</code> 블록을 감지해 <b>Mermaid 다이어그램</b>으로
+                변환</li>
+              <li><b>실시간 알림(SSE)</b><br><code>EventSource</code>
+                구독(withCredentials)으로 <code>notification</code> 이벤트를 푸시 수신하고<br>
+                끊김 시 3초 간격 자동 재연결</li>
+              <li><b>GitHub 레포 연동</b><br>repo URL + PAT 등록 시 토큰 형식
+                (<code>ghp_</code>/<code>github_pat_</code>)을 클라이언트에서 사전 검증,<br>
+                <span class="tag">BE: GithubSyncService</span> PR·컨트리뷰터 동기화</li>
+            </ul>
+          </div>
+        </div>
+        <div class="ptext">
+          <div>
+            <div class="block-h"><span class="n">3</span>Trouble Shooting</div>
+            <div class="star">
+              <div class="star-h"><span class="badge">STAR</span> 채용공고 렌더링 성능
+                개선</div>
+              <div class="star-body">
+                <div class="star-line"><span class="lk s">상황</span><span
+                    class="lv">필터·정렬·페이지네이션이 <b>매 렌더마다 재실행</b>되어 목록 조작(검색·정렬·페이지
+                    이동) 시 체감 속도 저하</span></div>
+                <div class="star-line"><span class="lk a">행동</span><span
+                    class="lv">흩어진 연산을 <b>공고 맵핑 → 스택 필터 → 추가 필터 → 정렬 →
+                      페이지네이션</b> 으로 나눠 각각 <code>useMemo</code>로 분리 캐싱하고,
+                    (<code>allJobsMap→jobsFilteredByStack→finalFilteredJobs→…</code>)
+                    <br>의존성 배열을 명확히 정의해 입력이 바뀔 때만 재계산</span></div>
+                <div class="star-line"><span class="lk r">결과</span><span
+                    class="lv">불필요한 재계산 제거로 목록 인터랙션 반응 속도 개선<br>단계별 캐싱으로 이후 필터
+                    추가도
+                    영향 범위가 명확</span></div>
+              </div>
+            </div><br>
+            <div class="star">
+              <div class="star-h"><span class="badge">STAR</span> Mermaid 비동기 렌더
+                경쟁 상태</div>
+              <div class="star-body">
+                <div class="star-line"><span class="lk s">상황</span><span
+                    class="lv">마크다운 속 Mermaid를 <b>비동기 render</b>하는데, 빠른 탭
+                    전환·언마운트 시
+                    사라진 DOM에 결과가 주입돼 에러·잔상이 발생하고 react-markdown이 코드블록을
+                    <code>&lt;pre&gt;</code>로 감싸 다이어그램도 깨짐</span></div>
+                <div class="star-line"><span class="lk a">행동</span><span
+                    class="lv"><code>cancelled</code> 플래그로 언마운트 후
+                    <code>innerHTML</code> 주입을 차단하고 블록마다 고유 id 부여<br>
+                    <code>pre</code> 오버라이드에서 <code>language-mermaid</code>는 래핑
+                    제거,
+                    render 실패 시 원본 코드로 폴백</span></div>
+                <div class="star-line"><span class="lk r">결과</span><span
+                    class="lv">탭을 빠르게 전환해도 <b>경쟁 상태·에러 없이</b> 안정 렌더, 깨지지 않는
+                    다이어그램 표시</span></div>
+              </div>
+            </div><br>
+            <div class="star">
+              <div class="star-h"><span class="badge">STAR</span> SSE 알림 중복 연결 ·
+                끊김</div>
+              <div class="star-body">
+                <div class="star-line"><span class="lk s">상황</span><span
+                    class="lv">로그인 상태 변화·리렌더 시 <code>EventSource</code>가 <b>중복
+                      생성</b>되거나<br>네트워크 끊김 후 재연결이 안 되는 문제 발생</span></div>
+                <div class="star-line"><span class="lk a">행동</span><span
+                    class="lv">콜백·enabled를 <code>ref</code>로 보관해 stale closure
+                    없이 최신
+                    값을 쓰고<br>connect 전 항상 <code>cleanup</code>으로 기존 소켓·타이머
+                    정리<br>
+                    <code>onerror</code> 시 close 후 3초 뒤 enabled일 때만 재연결
+                    시도</span></div>
+                <div class="star-line"><span class="lk r">결과</span><span
+                    class="lv">중복 연결 제거 + 끊겨도 <b>자동 복구</b>되는 안정적 실시간
+                    알림 구성</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-tiny"><span class="nm">이도현</span> · GGulJob · Frontend
+        Lead</div>
+    </section>
+
+    <!-- ============================ SCREENS : GGulJob ============================ -->
+    <section class="page">
+      <div class="proj-head ggul">
+        <div class="top">
+          <div><div class="pj-no">PROJECT 02 — Screens</div><div
+              class="pj-name">GGulJob <span class="sub">주요 화면</span></div></div>
+          <div class="pj-meta">
+            <span class="m">React 19 · TypeScript</span>
+            <span class="m">그래프 DB 추천</span>
+          </div>
+        </div><br>
+        <div class="pj-desc">채용공고 추천 · 팀원 찾기 · 프로젝트 찾기 · AI 포트폴리오 자동 생성 등
+          핵심 화면입니다.</div>
+      </div>
+
+      <div class="pimg web"
+        style="display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:8px 18px;flex:1;min-height:0;align-items:center;justify-items:center;">
+        <div class="shot"><img src="../assets/gguljob_recommend_jobs.png"
+            style="height:66mm;width:auto;display:block;" alt><div class="cap">채용공고 AI
+            추천</div></div>
+        <div class="shot"><img src="../assets/gguljob_find_teammates.png"
+            style="height:66mm;width:auto;display:block;" alt><div class="cap">팀원 찾기 ·
+            추천</div></div>
+        <div class="shot"><img src="../assets/gguljob_find_project.png"
+            style="height:66mm;width:auto;display:block;" alt><div class="cap">프로젝트
+            찾기</div></div>
+        <div class="shot"><img src="../assets/gguljob_portfolio_creating.png"
+            style="height:66mm;width:auto;display:block;" alt><div class="cap">AI 포트폴리오
+            자동 생성</div></div>
+      </div>
+      <div class="footer-tiny"><span class="nm">이도현</span> · GGulJob ·
+        Screens</div>
+    </section>
+
+    <!-- ============================ PROJECT 3 : HearO ============================ -->
+    <section class="page">
+      <div class="proj-head hearo">
+        <div class="top">
+          <div><div class="pj-no">PROJECT 03 — Frontend Lead</div><div
+              class="pj-name">HearO <span class="sub">히어로</span></div></div>
+          <div class="pj-meta">
+            <span class="m award">🏆 우수상</span>
+            <span class="m"><b>삼성 청년 SW·AI 아카데미 2026.01~02</b> · 6인</span>
+            <span class="m">Web (PC)</span>
+          </div>
+        </div>
+        <div class="pj-desc">WebRTC 기반 <b>실시간 AI 통화 플랫폼</b>. 콜센터 상담원을 폭언·욕설로부터
+          보호하기 위해 AI 음성 마스킹과 실시간 상담 가이드를 제공하고, 폭언 누적 시 AI 상담사로 자동 전환합니다.<br><b>근로자
+            보호</b>의 사회적 가치를 기술로 구현했습니다.</div>
+      </div><br>
+      <div class="pbody" style="grid-template-columns:4fr 6fr;">
+        <div class="ptext">
+          <div>
+            <div class="block-h"><span class="n">1</span>담당 역할 &amp; 기여</div><br>
+            <div class="role-row">
+              <div class="role-stat"><div class="num">FE</div><div
+                  class="lab">Lead</div></div>
+              <div class="role-desc"><span><b>프론트엔드 Lead</b>로 <b>LiveKit WebRTC 통화
+                  모듈</b>과<br><b>Web Audio 음성 마스킹</b>과 WebSocket/STOMP을
+                  주도 구현했습니다. 또한 <b>Composable 패턴</b>으로 통화 상태를 구조화했습니다.</span></div>
+            </div>
+          </div>
+          <div><br>
+            <div class="block-h"><span class="n">2</span>핵심 구현</div>
+            <ul class="feat">
+              <li><b>LiveKit WebRTC 통화 모듈</b><br><span class="tag">useLiveKit</span> ·
+                <span class="tag">useCallConnection</span>으로 <b>역할별 연결 상태머신</b>
+                설계<br>room을 <b>Pinia store에 보관</b>해 페이지 이동에도 통화 유지</li>
+              <li><b>Web Audio 실시간 음성 마스킹 (FE 핵심)</b><br>고객 오디오를
+                <code>Source→Delay(3s)→Gain</code>으로 3초 지연<br>폭언 감지 시 <b>GainNode 페이드
+                차단</b> + 비프음 재생</li>
+              <li><b>실시간 통신</b><br><span class="tag">useWebSocket</span> 자동 재연결,
+                <b>STOMP</b>로<br>고객 대기순번 · 상담원 매칭 실시간 갱신</li>
+              <li><b>보호 시나리오 &amp; 대시보드</b><br>폭언 3회 누적 자동 종료, AI 상담사 전환 UI<br>
+                <span class="tag">vue3-grid-layout</span> 드래그 3열 대시보드</li>
+            </ul>
+          </div>
+        </div>
+        <div class="ptext">
+          <div>
+            <div class="block-h"><span class="n">3</span>Trouble Shooting</div>
+            <div class="star">
+              <div class="star-h"><span class="badge">STAR</span> 폭언으로부터 상담원 보호</div>
+              <div class="star-body">
+                <div class="star-line"><span class="lk s">상황</span><span
+                    class="lv">상담원이 고객 폭언을 <b>실시간 그대로</b> 들으면 보호 목적이 무력화<br>
+                    WebRTC는 원격 오디오를 <b>즉시 재생</b>하는 것이 기본임</span></div>
+                <div class="star-line"><span class="lk a">행동</span><span
+                    class="lv">상담원만 <code>autoAttachRemoteAudio=false</code>로 두고<br>고객
+                    오디오를 <code>Source→Delay(3초)→Gain</code> Web Audio 파이프라인으로
+                    라우팅<br>폭언으로 판정되면 <b>GainNode 페이드
+                    차단</b> + 비프음 재생<br><code>AnalyserNode</code> RMS로 지연 출력 시작을 감지해
+                    즉시재생 fallback을 음소거</span></div>
+                <div class="star-line"><span class="lk r">결과</span><span
+                    class="lv">폭언이 상담원 귀에 닿기 전 <b>3초 윈도 안에서 차단</b>, 단일 연결로 역할별
+                    오디오 흐름을 분리한 <b>재사용 모듈</b>로 완성</span></div>
+              </div>
+            </div><br>
+            <div class="star">
+              <div class="star-h"><span class="badge">STAR</span> 폭언 3회 자동 종료</div>
+              <div class="star-body">
+                <div class="star-line"><span class="lk s">상황</span><span
+                    class="lv">폭언 3회 누적 시 자동 종료해야 하는데, 종료 판단은 <b>상담원 화면</b>에서
+                    일어나고<br><b>고객 화면</b>도 동시에 종료 · 안내돼야 함</span></div>
+                <div class="star-line"><span class="lk a">행동</span><span
+                    class="lv"><code>profanityCount≥3</code> 시 LiveKit <b>data 채널</b>로
+                    종료 신호를 <code>publishData(reliable)</code>로 고객에 전송<br>수신 보장을 위해
+                    500ms 대기 후 마이크 정지 · room disconnect, 종료와 함께 <b>AI 통화 요약</b>을
+                    백그라운드 생성</span></div>
+                <div class="star-line"><span class="lk r">결과</span><span
+                    class="lv">상담원 · 고객 양측이 <b>동일 사유로 동기 종료</b>되어 누락 없는 안내, 종료 직후
+                    요약까지 자동 제공</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-tiny"><span class="nm">이도현</span> · HearO · Frontend
+        Lead</div>
+    </section>
+
+    <!-- ============================ SCREENS : HearO ============================ -->
+    <section class="page">
+      <div class="proj-head hearo">
+        <div class="top">
+          <div><div class="pj-no">PROJECT 03 — Screens</div><div
+              class="pj-name">HearO <span class="sub">주요 화면</span></div></div>
+          <div class="pj-meta">
+            <span class="m">Vue 3 · LiveKit WebRTC</span>
+            <span class="m">Web Audio 마스킹</span>
+          </div>
+        </div><br>
+        <div class="pj-desc">상담원 통화 화면과 AI 상담 가이드·폭언 감지 등 핵심 화면입니다.
+        </div>
+      </div>
+
+      <div class="pimg web"
+        style="flex-direction:row;flex:1;justify-content:center;align-items:center;gap:18px;">
+        <div class="shot"><img src="../assets/img/hearo_1.jpg"
+            style="height:77mm;width:auto;display:block;" alt><div class="cap">상담원
+            통화 화면 (실시간 상담 가이드)</div></div>
+        <div class="shot"><img src="../assets/img/hearo_2.jpg"
+            style="height:77mm;width:auto;display:block;" alt><div class="cap">AI 상담
+            가이드 · 폭언 감지 경고</div></div>
+      </div>
+      <div class="footer-tiny"><span class="nm">이도현</span> · HearO ·
+        Screens</div>
+    </section>
+
+    <!-- ============================ AI PRODUCTIVITY ============================ -->
+    <section class="page">
+      <div class="proj-head ops">
+        <div class="top">
+          <div><div class="pj-no">PRODUCTIVITY — AI 활용 개발 워크플로우</div><div
+              class="pj-name">AI 활용 개발 생산성</div></div>
+          <div class="pj-meta">
+            <span class="m">Claude Code · MCP</span>
+          </div>
+        </div><br>
+        <div class="pj-desc">AI를 <b>"대신 개발"이 아니라 "맥락을 잃지 않는 개발 파트너"</b>로 활용합니다.<br>
+          Claude Code·MCP로 코드 탐색·구현·리뷰 워크플로우를 직접 구성하고 <b>MCP 기반 Jira 가이드를
+          팀에 배포</b>해 협업 생산성까지 끌어올렸습니다.</div>
+      </div><br>
+
+      <div
+        style="flex:1;display:flex;flex-direction:column;gap:11px;min-height:0;">
+        <div>
+          <div class="block-h"><span class="n">1</span>구축한 AI 개발 워크플로우</div>
+          <div class="rule-grid" style="grid-template-columns:repeat(3,1fr);">
+            <div class="rule"><div class="rt">🤖 Claude Code · Cursor</div><br><div
+                class="rd">코드 탐색·구현·리뷰를 AI 에이전트와 페어로 진행, 반복 작업을 위임</div></div>
+            <div class="rule"><div class="rt">🔗 MCP 연동</div><br><div
+                class="rd">Git·DB·문서 등 외부 도구를 <code>MCP</code>로 AI에 연결해 컨텍스트 자동
+                수집</div></div>
+            <div class="rule"><div class="rt">🧩 오픈소스 플러그인</div><br><div
+                class="rd"><code>oh-my-claudecode</code> ·
+                <code>continuous-claude</code>로 개발 품질
+                향상</div></div>
+            <div class="rule"><div class="rt">📉 토큰 최대 95% 절약</div><br><div
+                class="rd">TLDR 5단계 코드 분석으로 대규모 코드베이스를 효율적으로 탐색</div></div>
+            <div class="rule"><div class="rt">♻️ Compound, not compact</div><br><div
+                class="rd">핸드오프·메모리 시스템으로 세션 간 맥락을 압축 대신 <b>축적</b></div></div>
+            <div class="rule"><div class="rt">⚙️ 워크플로우 자동화</div><br><div
+                class="rd">설치·환경 구성·반복 작업을 스크립트와 규칙으로 자동화</div></div>
+          </div>
+        </div><br>
+        <div class="cols"
+          style="grid-template-columns:1fr 1fr;gap:14px;flex:1;min-height:0;">
+          <div>
+            <div class="block-h"><span class="n">2</span>대표 성과 — MCP Jira 가이드 배포</div>
+            <div class="star">
+              <div class="star-h"><span class="badge">STAR</span> 이슈 품질 표준화로 일일 정정
+                시간 <b>~30%↓</b></div>
+              <div class="star-body">
+                <div class="star-line"><span class="lk s">상황</span><span
+                    class="lv">팀원이 수동 생성한 이슈는 <b>태그 누락 · 에픽 미지정 · SP/담당자/네이밍
+                    불일치</b>가 잦아<br>매일 일과 후 이슈 점검·정정에 <b>40~50분</b>을 소모</span></div>
+                <div class="star-line"><span class="lk a">행동</span><span
+                    class="lv"><b>Claude MCP의 Jira 연동</b>으로 대화형 이슈 생성 환경을 만들고,
+                    story→task 자동 연결 · 담당자/에픽/SP 자동 처리 · 태그 규칙 · SP 산정 기준을 담은 <b>팀
+                    가이드를 작성·배포</b></span></div>
+                <div class="star-line"><span class="lk r">결과</span><span
+                    class="lv">누가 만들어도 형식·품질이 일관돼 <b>최소 수정만</b> 필요<br>정정 시간
+                    <b>40~50분 → 30분(약 30%↓)</b>, 팀이 이슈 정리 대신 개발에 집중</span></div>
+              </div>
+            </div><br>
+            <div class="result-box">
+              <div class="h">★ 가이드가 표준화한 것</div>
+              태그 규칙 <code>[요구사항-파트]</code> · 에픽/컴포넌트 자동 연동 · SP 산정 기준(피보나치) ·<br>
+              HOTFIX 에스컬레이션 · 스토리-태스크 자동 동기화 · Mattermost 작업 시작/완료 알림
+            </div>
+          </div>
+          <div>
+            <div class="block-h"><span class="n">3</span>트러블슈팅 &amp; 활용 관점</div>
+            <div class="star">
+              <div class="star-h"><span class="badge">STAR</span> Continuous Claude 설치
+                환경 구축 (Windows)</div>
+              <div class="star-body">
+                <div class="star-line"><span class="lk s">상황</span><span
+                    class="lv">Windows 직접 설치 시 Unix 전용 패키지(<code>jq</code> 등)의
+                    <br><code>./configure</code> 빌드·C 확장 컴파일이 실패.</span></div>
+                <div class="star-line"><span class="lk a">행동</span><span
+                    class="lv">원인을 빌드 환경 차이로 진단하고 <b>WSL2 + Docker Desktop</b> 환경으로
+                    전환<br><code>uv</code>·PostgreSQL 스택과 마이그레이션을 구성</span></div>
+                <div class="star-line"><span class="lk r">결과</span><span
+                    class="lv">세션 연속성·토큰 절약 환경을 확보해 집중 구현 주간의 개발 생산성 안정 유지</span></div>
+              </div>
+            </div><br>
+            <div class="result-box">
+              <div class="h">★ 활용 관점: 맥락과 검증을 직접 관리</div>
+              컨텍스트 자동 압축으로 맥락이 손실되던 문제를 <b>핸드오프·메모리로 축적</b>해 해결했습니다.<br> AI 결과는
+              <b>직접 검증</b>하고, 도구·플러그인을 골라 워크플로우를 구성하는 <b>오너십</b>으로 활용했습니다.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-tiny"><span class="nm">이도현</span> · AI 활용 개발 생산성</div>
+    </section>
+
+    <!-- ============================ COLLABORATION ============================ -->
+    <section class="page">
+      <div class="proj-head ops">
+        <div class="top">
+          <div><div class="pj-no">COLLABORATION — 3개 프로젝트 Jira·Git 관리
+              담당</div><div class="pj-name">협업 &amp; 프로세스 자동화</div></div>
+          <div class="pj-meta">
+            <span class="m">Jira 자동화 <b>20+</b></span>
+            <span class="m">Git Hook 품질 게이트</span>
+            <span class="m">Mattermost Webhook</span>
+          </div>
+        </div>
+        <div class="pj-desc">세 번의 팀 프로젝트에서 <b>Jira·Git 관리를 도맡으며</b> 반복되는 스프린트·이슈
+          관리 업무를 <b>20여 개 자동화 규칙</b>으로 설계해 협업 흐름을 자동화했습니다.<br>
+          "사람이 잊는 일을 시스템이 대신하게 한다"는 관점으로 프로세스를 직접 설계·운영했습니다.</div>
+      </div>
+      <br>
+      <div
+        style="flex:1;display:flex;flex-direction:column;gap:11px;min-height:0;">
+        <div>
+          <div class="block-h"><span class="n">1</span>Jira 자동화 (20+ 규칙)</div>
+          <div class="rule-grid" style="grid-template-columns:repeat(3,1fr);">
+            <div class="rule"><div class="rt">🏷️ 태그 기반 자동 분류</div><br><div
+                class="rd"><code>[코드-파트]</code> 태그로 에픽·컴포넌트 자동 연동, 누락 시 작성자
+                알림</div></div>
+            <div class="rule"><div class="rt">🔄 스토리-태스크 동기화</div><br><div
+                class="rd">연결된 태스크 상태에 따라 스토리를 진행 중·Done 자동 전환</div></div>
+            <div class="rule"><div class="rt">📅 스프린트 라이프사이클</div><br><div
+                class="rd">월요일 시작·목요일 D-1·종료 시 미완료 이슈 이월·라벨링</div></div>
+            <div class="rule"><div class="rt">🚨 HOTFIX 에스컬레이션</div><br><div
+                class="rd"><code>[HOTFIX]</code> 감지 시 우선순위 Highest + 즉시
+                알림</div></div>
+            <div class="rule"><div class="rt">📊 품질 게이트</div><br><div
+                class="rd">Story Point 미설정·Description 누락 감지 및 템플릿 자동
+                생성</div></div>
+            <div class="rule"><div class="rt">⏳ 정체 이슈 추적</div><br><div
+                class="rd">3일 이상 변화 없는 진행 중 이슈를 담당자에게 리마인더</div></div>
+          </div>
+        </div><br>
+        <div class="cols"
+          style="grid-template-columns:1fr 1fr;gap:14px;flex:1;min-height:0;">
+          <div>
+            <div class="block-h"><span class="n">2</span>Git 자동화 (커밋 품질 게이트)</div>
+            <ul class="feat">
+              <li><b>setup-hooks.sh 원클릭 설치</b><br>팀원이 한 번만 실행하면 전 hook 설치, 도입
+                부담 최소화</li>
+              <li><b>pre-commit 파트 자동 감지</b><br>BE <code>Spotless</code>(Google
+                Java Style) · FE <code>ktlint·detekt</code>로 검사·자동 수정 후 <b>자동
+                re-stage</b><br>실패 시 커밋 차단</li>
+              <li><b>commit-msg 이슈키 확장</b><br><code>[#131]</code> →
+                <code>[S14P31S309-131]</code> 자동 변환으로 GitLab–Jira 연동</li>
+              <li><b>.editorconfig · .gitattributes</b><br>에디터 공통 설정 · OS 간 줄바꿈
+                통일로 환경 차이 충돌 사전 차단</li>
+            </ul>
+          </div>
+          <div>
+            <div class="block-h"><span class="n">3</span>Trouble Shooting &amp; 설계
+              원칙</div>
+            <div class="star">
+              <div class="star-h"><span class="badge">STAR</span> 스토리 자동 완료 동기화
+                오작동</div>
+              <div class="star-body">
+                <div class="star-line"><span class="lk s">상황</span><span
+                    class="lv">태스크 1개만 Done인데 스토리가 통째로 Done 처리. 감사 로그상 Lookup
+                    <b>0건 반환</b></span></div>
+                <div class="star-line"><span class="lk a">행동</span><span
+                    class="lv">JQL 검색창은 정상이나 Automation만 0건인 점을 추적 → <br>원인은
+                    <code>issuetype in (작업,버그)</code>의 <b>한글/영문 매칭 실패</b>를 확인<br>
+                    <code>issuetype != Story</code> <b>부정형</b>으로
+                    변경</span></div>
+                <div class="star-line"><span class="lk r">결과</span><span
+                    class="lv">정상화 + <b>"긍정형 in 대신 부정형 != 사용"</b>이라는 재사용 가능한 교훈 확보</span></div>
+              </div>
+            </div><br>
+            <div class="result-box">
+              <div class="h">★ 설계 원칙: 알림 피로도 관리</div>
+              데일리 다이제스트·완료 차단은 <b>의도적으로 제외</b>하고 핵심 알림만 남겼습니다.<br>자동화는 많이 만드는 게 아니라
+              <b>팀이 실제로 따르게 만드는 것</b>이 핵심이라는 관점으로 설계했습니다.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-tiny"><span class="nm">이도현</span> · Collaboration &amp;
+        Process Automation</div>
+    </section>
+
+    <!-- ============================ SCREENS : Collaboration ============================ -->
+    <section class="page">
+      <div class="proj-head ops">
+        <div class="top">
+          <div><div class="pj-no">COLLABORATION — Screens</div><div
+              class="pj-name">협업 자동화 <span class="sub">주요 화면</span></div></div>
+          <div class="pj-meta">
+            <span class="m">Jira Automation</span>
+            <span class="m">Mattermost Webhook</span>
+          </div>
+        </div><br>
+        <div class="pj-desc">직접 구축한 Jira 자동화 규칙과 Mattermost 자동 알림 화면입니다.</div>
+      </div>
+
+      <div class="pimg web"
+        style="flex-direction:row;flex:1;justify-content:center;align-items:center;gap:18px;">
+        <div class="shot"><img src="../assets/img/ops_1.jpg"
+            style="height:105mm;width:auto;display:block;" alt><div class="cap">Jira
+            자동화 규칙 20개</div></div>
+        <div class="shot"><img src="../assets/img/ops_2.jpg"
+            style="height:105mm;width:auto;display:block;" alt><div class="cap">Mattermost
+            자동 알림</div></div>
+      </div>
+      <div class="footer-tiny"><span class="nm">이도현</span> · Collaboration ·
+        Screens</div>
+    </section>
+
+  </body>
+</html>
